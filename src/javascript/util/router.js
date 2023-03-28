@@ -1,17 +1,35 @@
 class Router {
+//   const router = new Router({
+//     '/': ProductPage,
+//     '/detail' : ProductDetail
+// })
 
+/* 처음 실행 */
   constructor(routes){
       if(!routes){
         console.error('라우츠 초기화에 실패하였습니다.');
       }
+      //console.log('초기 라우트',routes);
       this.routes = routes;
+      // 
+      for (const key in routes) {
+          const route = routes[key];
+          if(key.indexOf(':') > -1 ){
+            const [_, routeName, param ] = key.split('/');
+            console.log('routeName',routeName);
+            this.routes['/' + routeName] = route;
+            delete this.routes[key]
+          } 
+      }
+      console.log('응',this.routes);
   }
-
+/* 초기화 순서상 2번째 */
   init(rootElementId){
     if(!rootElementId){
       console.error('라우트 초기화에 실패했습니다, 초기 rootElemntId가 정의되지 않았습니다');
       return null;
     }
+    // console.log('rootElementId는?', rootElementId);
     this.rootElementId = rootElementId;
 
     this.routing(window.location.pathname);
@@ -32,24 +50,33 @@ class Router {
     this.routing(window.location.pathname)
   }
 
+  /* 라우팅 메서드  */
   routing(pathname){
+    console.log('routing의', pathname);
     const [_, routeName, ...param] = pathname.split('/');
     let page = '';
-
-    // url에 추가 경로가 있는지 확인
+    // /detail/10
+    // 객체로 들어온 초기 라우터에 키값을 통해 넣어둔 클래스에 접근.
     if(this.routes[pathname]){
       const component = new this.routes[pathname]
+      // 각 페이지 클래스에 있는 랜더 함수. 현재 router에 있는 랜더 메서드랑 다름.
+      page = component.render();
+    } else if(param){
+      const component = new this.routes['/'+routeName](param)
       page = component.render();
     }
-
+    
     if(page){
       this.render(page);
     }
   }
 
+  /* 랜더링 */
   render(page){
     const rootElement = document.querySelector(this.rootElementId);
     rootElement.innerHTML = '';
     rootElement.appendChild(page);
   }
 }
+
+export default Router

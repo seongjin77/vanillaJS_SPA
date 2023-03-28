@@ -10,7 +10,8 @@ export default class App {
 
     const router = new Router({
         '/': ProductPage,
-        '/detail' : ProductDetail
+        '/detail' : ProductDetail,
+       // '/detail/:id' : ProductDetail
     })
     // 초기화
     router.init(el);
