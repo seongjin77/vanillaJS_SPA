@@ -12,16 +12,16 @@ class Router {
       //console.log('초기 라우트',routes);
       this.routes = routes;
       // 
-      for (const key in routes) {
-          const route = routes[key];
-          if(key.indexOf(':') > -1 ){
-            const [_, routeName, param ] = key.split('/');
-            console.log('routeName',routeName);
-            this.routes['/' + routeName] = route;
-            delete this.routes[key]
-          } 
-      }
-      console.log('응',this.routes);
+      // for (const key in routes) {
+      //     const route = routes[key];
+      //     if(key.indexOf(':') > -1 ){
+      //       const [_, routeName, param ] = key.split('/');
+      //       console.log('routeName',routeName);
+      //       this.routes['/' + routeName] = route;
+      //       delete this.routes[key]
+      //     } 
+      // }
+      console.log('초기라우츠',this.routes);
   }
 /* 초기화 순서상 2번째 */
   init(rootElementId){
