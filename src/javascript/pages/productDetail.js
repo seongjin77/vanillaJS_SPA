@@ -2,6 +2,7 @@ class ProductDetail {
 
   /* 파라미터 들어옴 */
   constructor(id){
+    console.log('으잉',id);
     this.id = id;
     this.product = {};
   }
