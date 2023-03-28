@@ -37,6 +37,7 @@ class Router {
     window.addEventListener('click', (e)=> {
       if(e.target.tagName.toLowerCase() === 'a'){
         e.preventDefault();
+        console.log('클릭완료');
         this.routePush(e.target.href)
       }
     })
@@ -46,6 +47,7 @@ class Router {
   }
 
   routePush(pathname){
+    console.log('routerPush 안에서는 전체주소',pathname);
     window.history.pushState({},null,pathname);
     this.routing(window.location.pathname)
   }
