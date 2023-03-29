@@ -2,7 +2,6 @@ class ProductDetail {
 
   /* 파라미터 들어옴 */
   constructor(id){
-    console.log('으잉',id);
     this.id = id;
     this.product = {};
   }
@@ -17,7 +16,7 @@ class ProductDetail {
   /* 상품 리스트 세팅하기 */
   async setProductList(){
     await this.getProductData();
-    console.log('데이터 확인', this.product);
+    // console.log('데이터 확인', this.product);
   }
 
   render(){

@@ -3,7 +3,7 @@ class ProductPrice {
       this.productPrice = productPrice;
   }
   render(){
-    const productPriceContainer = document.createElement('div');
+    const productPriceContainer = document.createElement('strong');
     productPriceContainer.setAttribute('class', 'price m-price');
 
     const productPrice = document.createElement('strong');

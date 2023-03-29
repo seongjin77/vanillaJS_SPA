@@ -101,3 +101,12 @@ button {
   color: var(--txt-color);
 }
 
+.like-btn {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+}
+
+.on {
+    background-color: red;
+}

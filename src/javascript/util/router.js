@@ -8,19 +8,18 @@ class Router {
   constructor(routes){
       if(!routes){
         console.error('라우츠 초기화에 실패하였습니다.');
-      }
-      //console.log('초기 라우트',routes);
+      } 
       this.routes = routes;
       // 
-      // for (const key in routes) {
-      //     const route = routes[key];
-      //     if(key.indexOf(':') > -1 ){
-      //       const [_, routeName, param ] = key.split('/');
-      //       console.log('routeName',routeName);
-      //       this.routes['/' + routeName] = route;
-      //       delete this.routes[key]
-      //     } 
-      // }
+      for (const key in routes) {
+          const route = routes[key];
+          
+          if(key.indexOf(':') > -1 ){
+            const [_, routeName, param ] = key.split('/');
+            this.routes['/' + routeName] = route;
+            delete this.routes[key]
+          } 
+      }
       console.log('초기라우츠',this.routes);
   }
 /* 초기화 순서상 2번째 */
@@ -29,16 +28,17 @@ class Router {
       console.error('라우트 초기화에 실패했습니다, 초기 rootElemntId가 정의되지 않았습니다');
       return null;
     }
-    // console.log('rootElementId는?', rootElementId);
+
     this.rootElementId = rootElementId;
 
     this.routing(window.location.pathname);
 
     window.addEventListener('click', (e)=> {
-      if(e.target.tagName.toLowerCase() === 'a'){
+
+      // 클릭한 요소의 상위 요소 중 a태그가 있을때 상위 요소가 클릭했을때로 변경
+      if(e.target.closest('a')){
         e.preventDefault();
-        console.log('클릭완료');
-        this.routePush(e.target.href)
+        this.routePush(e.target.closest('a').href) 
       }
     })
     
@@ -47,14 +47,13 @@ class Router {
   }
 
   routePush(pathname){
-    console.log('routerPush 안에서는 전체주소',pathname);
     window.history.pushState({},null,pathname);
     this.routing(window.location.pathname)
   }
 
   /* 라우팅 메서드  */
   routing(pathname){
-    console.log('routing의', pathname);
+    // console.log('routing의 pathname', pathname);
     const [_, routeName, ...param] = pathname.split('/');
     let page = '';
     // /detail/10
