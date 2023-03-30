@@ -11,7 +11,7 @@ class ProductCard {
 
     const productImage = new ProductImage(this.item.thumbnailImg);
     const productName = new ProductName(this.item.productName);
-    const productPrice = new ProductPrice(this.item.price);
+    const productPrice = new ProductPrice(this.item.price, this.item.discountRate);
     const productLikeButton = new ProductLikeButton(this.item.id);
 
     product.appendChild(productImage.render());

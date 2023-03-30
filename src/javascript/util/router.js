@@ -13,7 +13,7 @@ class Router {
       // 
       for (const key in routes) {
           const route = routes[key];
-          
+
           if(key.indexOf(':') > -1 ){
             const [_, routeName, param ] = key.split('/');
             this.routes['/' + routeName] = route;
@@ -38,7 +38,7 @@ class Router {
       // 클릭한 요소의 상위 요소 중 a태그가 있을때 상위 요소가 클릭했을때로 변경
       if(e.target.closest('a')){
         e.preventDefault();
-        this.routePush(e.target.closest('a').href) 
+        this.routePush(e.target.closest('a').href)
       }
     })
     
