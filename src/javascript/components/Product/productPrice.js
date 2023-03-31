@@ -39,7 +39,6 @@ class ProductPrice {
 
     productPrice.innerText = this.productPrice;
     productPrice.appendChild(priceType);
-    
 
     return productPriceContainer;
   }

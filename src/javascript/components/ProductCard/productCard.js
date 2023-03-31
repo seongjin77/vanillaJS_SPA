@@ -1,4 +1,4 @@
-import {ProductImage, ProductPrice, ProductName, ProductLikeButton} from '../Product/index.js';
+import {ProductImage, ProductPrice, ProductName} from '../Product/index.js';
 
 class ProductCard {
   constructor(item){
@@ -10,14 +10,12 @@ class ProductCard {
     product.setAttribute('class', 'product-item');
 
     const productImage = new ProductImage(this.item.thumbnailImg);
-    const productName = new ProductName(this.item.productName);
+    const productName = new ProductName(this.item.productName, this.item.id);
     const productPrice = new ProductPrice(this.item.price, this.item.discountRate);
-    const productLikeButton = new ProductLikeButton(this.item.id);
 
     product.appendChild(productImage.render());
     product.appendChild(productName.render());
     product.appendChild(productPrice.render());
-    product.appendChild(productLikeButton.render());
 
     return product
   }
