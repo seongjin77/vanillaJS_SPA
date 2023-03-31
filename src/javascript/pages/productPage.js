@@ -29,9 +29,10 @@ class ProductPage {
         const $fragment = document.createDocumentFragment();
 
         this.product.forEach((item) => {
+       
             const productItem = document.createElement('li');
             productItem.setAttribute('class', 'product-item');
-            const productCard = new ProductCard(item);
+            const productCard = new ProductCard({item: item});
 
             productItem.append(productCard.render());
             $fragment.appendChild(productItem);

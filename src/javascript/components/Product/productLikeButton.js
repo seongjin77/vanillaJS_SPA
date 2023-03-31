@@ -1,6 +1,8 @@
-class ProductLikeButton {
+import Component from "../../core/component.js";
+
+class ProductLikeButton extends Component {
   constructor(id){
-    this.productId= id
+    super(id)
     this.liked = this.checkLikeList();
   }
 
@@ -9,7 +11,7 @@ class ProductLikeButton {
       localStorage.setItem('likeList',JSON.stringify([]))
     }
     const likeList = JSON.parse(localStorage.getItem('likeList'));
-    return likeList.includes(this.productId);
+    return likeList.includes(this.props.id);
   }
 
   addClickEvent(likeButton){
@@ -20,11 +22,11 @@ class ProductLikeButton {
       const likeList = JSON.parse(localStorage.getItem('likeList'));
 
       if(this.liked){
-        likeList.push(this.productId);
+        likeList.push(this.props.id);
         localStorage.setItem('likeList',JSON.stringify(likeList))
       }
       else{
-        const deleteArr = likeList.filter(id => id !== this.productId);
+        const deleteArr = likeList.filter(id => id !== this.props.id);
         localStorage.setItem('likeList',JSON.stringify(deleteArr))
       }
 
