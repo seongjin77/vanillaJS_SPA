@@ -11,13 +11,10 @@ class ProductName extends Component {
     const productNameContainer = document.createElement('div');
 
     const productName = document.createElement('strong');
-    productName.setAttribute('class', 'product-name');
+    productName.setAttribute('class', 'product-name sl-ellipsis');
     productName.innerText = this.props.name + '!!'
 
-    const productLikeButton = new ProductLikeButton( {id : this.props.id});
-
     productNameContainer.appendChild(productName);
-    productNameContainer.appendChild(productLikeButton.render());
 
     return productNameContainer;
   }

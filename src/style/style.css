@@ -204,7 +204,7 @@ table, thead, tbody, tr {
 
 /* 상품 이름 스타일 */
 .product-name {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 22px;
 }
 
@@ -214,6 +214,7 @@ table, thead, tbody, tr {
     font-weight: 700;
     font-size: 24px;
     line-height: 30px;
+    margin-right: 10px;
 }
 
 .m-price span {
@@ -392,6 +393,7 @@ table, thead, tbody, tr {
 .product .product-item .like-btn {
     position: absolute;
     right: 0;
+    bottom: 40px;
 }
 
 /* 상품 목록 페이지 - 장바구니 링크 */

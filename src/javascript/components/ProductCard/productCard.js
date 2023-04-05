@@ -1,5 +1,5 @@
 import Component from '../../core/component.js';
-import {ProductImage, ProductPrice, ProductName} from '../Product/index.js';
+import {ProductImage, ProductPrice, ProductName,ProductLikeButton} from '../Product/index.js';
 
 class ProductCard extends Component {
   // constructor(item){
@@ -13,8 +13,10 @@ class ProductCard extends Component {
     const productImage = new ProductImage({src: this.props.item.thumbnailImg});
     const productName = new ProductName({ name: this.props.item.productName, id: this.props.item.id});
     const productPrice = new ProductPrice({price: this.props.item.price, discount: this.props.item.discountRate});
+    const productLikeButton = new ProductLikeButton({id : this.props.item.id});
 
     product.appendChild(productImage.render());
+    product.appendChild(productLikeButton.render());
     product.appendChild(productName.render());
     product.appendChild(productPrice.render());
 

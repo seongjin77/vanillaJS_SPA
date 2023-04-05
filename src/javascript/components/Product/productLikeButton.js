@@ -14,11 +14,8 @@ class ProductLikeButton extends Component {
     return likeList.includes(this.props.id);
   }
 
-  addClickEvent(likeButton){
-    likeButton.addEventListener('click',(e)=>{
-      e.preventDefault();
-      e.stopPropagation();
-      this.liked = !this.liked;
+  changeLiked(){
+    this.liked = !this.liked;
       const likeList = JSON.parse(localStorage.getItem('likeList'));
 
       if(this.liked){
@@ -29,11 +26,8 @@ class ProductLikeButton extends Component {
         const deleteArr = likeList.filter(id => id !== this.props.id);
         localStorage.setItem('likeList',JSON.stringify(deleteArr))
       }
-
-      e.target.classList.toggle('on');
-
-    })
   }
+
 
   render(){
       const likeButton = document.createElement('button');
@@ -45,7 +39,13 @@ class ProductLikeButton extends Component {
       likeButtonIr.innerText = '좋아요 버튼';
 
       likeButton.appendChild(likeButtonIr);
-      this.addClickEvent(likeButton);
+
+      likeButton.addEventListener('click', (e)=> {
+        e.preventDefault();
+        e.stopPropagation();
+        this.changeLiked();
+        e.target.classList.toggle('on');
+      })
 
       return likeButton 
   }

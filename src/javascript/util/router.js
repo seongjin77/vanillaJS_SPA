@@ -10,12 +10,14 @@ class Router {
         console.error('라우츠 초기화에 실패하였습니다.');
       } 
       this.routes = routes;
+      this.routeParam = {};
       // 
       for (const key in routes) {
           const route = routes[key];
 
           if(key.indexOf(':') > -1 ){
             const [_, routeName, param ] = key.split('/');
+            this.routeParam[routeName] = param.replace(':','')
             this.routes['/' + routeName] = route;
             delete this.routes[key]
           } 
@@ -61,10 +63,13 @@ class Router {
     if(this.routes[pathname]){
       const component = new this.routes[pathname]
       // 각 페이지 클래스에 있는 랜더 함수. 현재 router에 있는 랜더 메서드랑 다름.
-      page = component.render();
+      page = component.initialize();
     } else if(param){
-      const component = new this.routes['/'+routeName](param)
-      page = component.render();
+      const routeParam = {};
+      routeParam[this.routeParam[routeName]] = param;
+
+      const component = new this.routes['/'+routeName](routeParam)
+      page = component.initialize();
     }
     
     if(page){
