@@ -1,13 +1,13 @@
 import Component from "../../core/component.js";
+import createComponent from "../../core/createComponent.js";
+import SectionHeading from './sectionHeading.js'
 
 class ProductDetailInfo extends Component {
   render(){
     const productDetailInfo = document.createElement('section');
     productDetailInfo.setAttribute('class','product-detail-info');
 
-    const sectionHeading = document.createElement('h2');
-    sectionHeading.setAttribute('class','ir');
-    sectionHeading.innerText = '상품 상세 정보';
+    const sectionHeading = createComponent(SectionHeading, {text:'상품 상세 정보'});
 
     const productDatalist = document.createElement('dl');
     productDatalist.setAttribute('class','product-data');
@@ -43,7 +43,7 @@ class ProductDetailInfo extends Component {
     })
     productContent.append($fragment);
     
-    productDetailInfo.append(productDatalist,productContent);
+    productDetailInfo.append(sectionHeading,productDatalist,productContent);
     
     return productDetailInfo
   }
