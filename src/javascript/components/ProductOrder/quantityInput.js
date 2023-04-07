@@ -19,6 +19,7 @@ class QuantityInput extends Component{
     quantityInput.type = 'number';
     quantityInput.setAttribute('class','quantity-input');
     quantityInput.setAttribute("id",`quantityInput${this.props.product.id}`);
+    quantityInput.value = 1;
 
     const quantityLabel = document.createElement('label');
     quantityLabel.setAttribute('class','ir');
