@@ -27,7 +27,7 @@ class Router {
 /* 초기화 순서상 2번째 */
   init(rootElementId){
     if(!rootElementId){
-      console.error('라우트 초기화에 실패했습니다, 초기 rootElemntId가 정의되지 않았습니다');
+      console.error('라우트 초기화에 실패했습니다, 초기 rootElementId가 정의되지 않았습니다');
       return null;
     }
 

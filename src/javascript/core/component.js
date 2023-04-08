@@ -10,7 +10,7 @@ class Component {
     updater() {
         const rendered = this.render();
         this.lastRendered.replaceWith(rendered);
-        this.rendered = rendered;
+        this.lastRendered = rendered;
     }
 
     render() {}
