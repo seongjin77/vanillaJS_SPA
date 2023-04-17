@@ -1,23 +1,23 @@
 import Component from "../../core/component.js";
-import ProductLikeButton from "./productLikeButton.js";
+import ProductLikeButton from "../Button/productLikeButton.js";
 
 class ProductName extends Component {
-  // 생략가능
-  // constructor(props){
-  //   super(props);
-  // }
+    // 생략가능
+    // constructor(props){
+    //   super(props);
+    // }
 
-  render(){
-    const productNameContainer = document.createElement('div');
+    render() {
+        const productNameContainer = document.createElement("div");
 
-    const productName = document.createElement('strong');
-    productName.setAttribute('class', 'product-name sl-ellipsis');
-    productName.innerText = this.props.name + '!!'
+        const productName = document.createElement("strong");
+        productName.setAttribute("class", "product-name sl-ellipsis");
+        productName.innerText = this.props.name + "!!";
 
-    productNameContainer.appendChild(productName);
+        productNameContainer.appendChild(productName);
 
-    return productNameContainer;
-  }
+        return productNameContainer;
+    }
 }
 
-export default ProductName
+export default ProductName;
