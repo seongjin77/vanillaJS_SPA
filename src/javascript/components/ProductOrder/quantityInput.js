@@ -4,7 +4,6 @@ class QuantityInput extends Component{
 
   constructor(props){
     super(props);
-    console.log('ㄹㄴㄹㄴ',props);
   }
 
   increaseQuantity(){
