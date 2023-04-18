@@ -18,7 +18,7 @@ class CartPage extends Component{
         this.getCouponData();
     }
     async getCouponData(){
-        const response = await fetch('http://35.76.53.28:8080/coupon');
+        const response = await fetch('https://test.api.weniv.co.kr/coupon');
         const data = await response.json();
         this.setState({...this.state, couponList:data})
     }

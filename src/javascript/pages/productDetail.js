@@ -18,7 +18,7 @@ class ProductDetail extends Component {
    /* 전체 상품 정보 가져오기 */ 
    async getProductData(){
 
-    const response = await fetch(`http://35.76.53.28:8080/mall/${this.props.id}`);
+    const response = await fetch(`https://test.api.weniv.co.kr/mall/${this.props.id}`);
     const data = await response.json();
 
     this.setState({product: data , isLoaded : true});
