@@ -1,3 +1,5 @@
+import LinkToMain from "../components/Button/linkToMain.js";
+import OrderButton from "../components/Button/orderButton.js";
 import { CartPageSection } from "../components/Cart/common/index.js";
 import { CouponSelectBox, OrderItem, SelectedCouponList,OrderTable } from "../components/Cart/index.js";
 import { Component, createComponent } from "../core/index.js";
@@ -11,6 +13,7 @@ class CartPage extends Component{
             couponList:[],
             orderData: orderData? JSON.parse(localStorage.getItem('cart')) : {},
             selectedCoupons:{},
+            checkedProducts: {},
         }
         this.getCouponData();
     }
@@ -48,6 +51,18 @@ class CartPage extends Component{
         const filteredCoupons = this.filterObjectByKey(this.state.selectedCoupons,(key) => key !== couponId)
         this.setState({...this.state, selectedCoupons: filteredCoupons})
     }
+    isSelectedAll(){
+        return Object.keys(this.state.checkedProducts).length === Object.keys(this.state.orderData).length
+    }
+    selectAllProducts(){
+        if(this.isSelectedAll()){
+            this.setState({...this.state, checkedProducts:{}})
+        } else {
+            this.setState({...this.state, checkedProducts: this.state.orderData})
+        }
+    }
+
+
     render(){
         const cartContainer = document.createElement("main");
         cartContainer.setAttribute("class","cart")
@@ -96,23 +111,38 @@ class CartPage extends Component{
                 })
                 optionText = `옵션: ${options.map(option =>  `${option.optionName}(수량: ${option.quantity})`).join(' / ')}`
             }
+            const isSelected = this.state.checkedProducts.hasOwnProperty(orderProduct.id)
             const orderItem = createComponent(OrderItem, {
                 //...orderProduct,
                 ...orderProduct.detail,
                 ...this.state.selectedCoupons[couponId],
                 productDiscountRate: orderProduct.detail.discountRate,
                 totalPrice: orderProduct.totalPrice - (coupon? coupon.discount: 0),
-                optionText: optionText
+                optionText: optionText,
+                isSelected:isSelected,
+                onClickBox:()=>{
+                    if(isSelected){
+                        const filteredProducts = this.filterObjectByKey(this.state.checkedProducts,(key)=>key!==productId)
+                        this.setState({...this.state,checkedProducts:filteredProducts})
+                    } else {
+                        this.setState({...this.state,checkedProducts:{...this.state.checkedProducts,[productId]:orderProduct}})
+                    }
+                }
             })
             orderItems.push(orderItem)
         }
         const orderTable = createComponent(OrderTable,{
+            isSelectedAll: this.isSelectedAll(),
+            selectAllProducts: this.selectAllProducts.bind(this),
+            selectedCoupons: this.state.selectedCoupons, 
+            orderData: this.state.orderData,
             childrenEl: orderItems
         })
         orderProductSection.append(orderTable)
-
-        cartArticle.append(headingTitle,couponSection,orderProductSection);
-        cartContainer.append(cartArticle);
+        const orderButton = createComponent(OrderButton,{text:'선택 상품 주문하기'})
+        const homeButton = createComponent(LinkToMain,{})
+        cartArticle.append(headingTitle,couponSection,orderProductSection,orderButton);
+        cartContainer.append(cartArticle,homeButton);
         return cartContainer
 
     }
