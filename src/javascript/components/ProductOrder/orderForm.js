@@ -106,6 +106,27 @@ class OrderForm extends Component {
     console.log('찾는거',addedProduct);
     
   }
+  orderProduct(){
+    const productId = this.props.product.id;
+    const addedProduct = {
+      id:productId,
+      detail: this.props.product,
+      option: [],
+      totalPrice:0,
+      quantity:0
+    }
+    this.state.selectedProductOptions.forEach(option => {
+      const targetIndex = addedProduct.option.findIndex(addedOption => addedOption.option === option.option)
+      if(targetIndex === -1){
+        addedProduct.option.push(option);
+      } else {
+        addedProduct.option[targetIndex].quantity += option.quantity
+      }
+  })
+  addedProduct.quantity += this.state.quantity;
+  addedProduct.totalPrice += this.getTotalPrice();
+  localStorage.setItem('cart', JSON.stringify({[addedProduct.id]: addedProduct}))
+  }
 
   toggleCartModal(){
     this.setState({...this.state, cartModal: !this.state.cartModal})
@@ -208,6 +229,10 @@ class OrderForm extends Component {
 
     if(this.props.product.stockCount>0 && this.state.quantity>0){
       cartButton.addEventListener('click',this.toggleCartModal.bind(this));
+      orderButton.addEventListener('click',()=>{
+        this.orderProduct();
+        window.routing('/cart')
+      })
       if(!this.state.cartModal) cartButton.addEventListener('click', this.addProductToCart.bind(this));
       
     }

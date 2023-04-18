@@ -44,6 +44,7 @@ class Router {
       }
     })
     
+    window.routing = (path) => this.routePush(path);
     /* history.back 또는 history.forward를 호출할때 발생하는 이벤트에 대한 핸들러 등록하는 메서드 */
     window.onpopstate = () => this.routing(window.location.pathname);
   }
