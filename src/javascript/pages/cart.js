@@ -45,7 +45,7 @@ class CartPage extends Component{
         this.setState({...this.state, couponListToggle: false, selectedCoupons});
     }
     filterObjectByKey(object,filterFunc){
-       return Object.keys(object).filter(filterFunc).reduce((prev,key) => Object.assign(prev,{[key]:this.state.selectedCoupons[key]}),{})
+       return Object.keys(object).filter(filterFunc).reduce((prev,key) => Object.assign(prev,{[key]:object[key]}),{})
     }
     cancleCoupon(couponId){
         const filteredCoupons = this.filterObjectByKey(this.state.selectedCoupons,(key) => key !== couponId)
@@ -60,6 +60,16 @@ class CartPage extends Component{
         } else {
             this.setState({...this.state, checkedProducts: this.state.orderData})
         }
+    }
+    deleteProducts(){
+        const selectedProducts = this.filterObjectByKey(this.state.orderData, (productId)=>{
+            return !Object.keys(this.state.checkedProducts).includes(productId)
+        })
+        localStorage.setItem('cart',JSON.stringify(selectedProducts));
+        const selectedCoupons = this.filterObjectByKey(this.state.selectedCoupons, (couponId)=> {
+            return !Object.keys(this.state.checkedProducts).includes(this.state.selectedCoupons[couponId].productid+'')
+        })
+        this.setState({...this.state,orderData:selectedProducts, selectedCoupons:selectedCoupons})
     }
 
 
@@ -136,6 +146,7 @@ class CartPage extends Component{
             selectAllProducts: this.selectAllProducts.bind(this),
             selectedCoupons: this.state.selectedCoupons, 
             orderData: this.state.orderData,
+            onClickDeleteButton: this.deleteProducts.bind(this),
             childrenEl: orderItems
         })
         orderProductSection.append(orderTable)

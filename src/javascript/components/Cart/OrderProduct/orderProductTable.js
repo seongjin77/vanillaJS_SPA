@@ -21,7 +21,6 @@ class OrderTable extends Component {
         const productTotalPrice = Object.keys(this.props.orderData).reduce((prev,key)=>prev+this.props.orderData[key].totalPrice,0);
         const shippingFee = Object.keys(this.props.orderData).reduce((prev,key)=>prev+this.props.orderData[key].detail.shippingFee,0);
         const couponDiscount = this.props.selectedCoupons? Object.keys(this.props.selectedCoupons).reduce((prev,key)=>prev+this.props.selectedCoupons[key].discount,0)*-1:0;
-        console.log("?!",couponDiscount)
         return {productTotalPrice,shippingFee,couponDiscount}
     }
     // 렌더링
