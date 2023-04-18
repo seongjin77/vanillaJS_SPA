@@ -34,7 +34,7 @@ class ProductDetailInfo extends Component {
     const $fragment = document.createDocumentFragment();
 
     this.props.product.detailInfoImage.forEach(src => {
-      const imgSrc = `http://35.76.53.28:8080/${src}`;
+      const imgSrc = `https://test.api.weniv.co.kr/${src}`;
       const imgItem = document.createElement('img');
       imgItem.setAttribute('alt','상품 소개 이미지');
       imgItem.setAttribute('src',imgSrc);
