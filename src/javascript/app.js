@@ -9,7 +9,7 @@ export default class App {
     const {el} = this.props;
 
     const router = new Router({
-        '/': ProductPage,
+        '/vanillaJS_SPA': ProductPage,
         '/detail/:id' : ProductDetail,
         '/cart' : CartPage
     })
