@@ -819,7 +819,7 @@ margin-bottom 값을 다르게 합니다. (form에 이미 padding 10px이 설정
 }
 
 .cart .order-table .checkbox button.on {
-    background: url(../assets/icon-check-box-on.svg) no-repeat center / contain;
+    background: url(../assets/icon-check-box-ON.svg) no-repeat center / contain;
 }
 
 .cart tbody tr {
