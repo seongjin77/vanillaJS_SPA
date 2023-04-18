@@ -21,7 +21,7 @@ class ProductBasicInfo extends Component {
     productNamePriceContainer.setAttribute('class','product-name-price');
 
     const productName =createComponent(ProductName,{name:this.props.product.productName});
-    const productPrice = createComponent(ProductPrice,{price: this.props.product.price, discountRate: this.props.product.discountRate});
+    const productPrice = createComponent(ProductPrice,{price: this.props.product.price, discount: this.props.product.discountRate});
     productNamePriceContainer.append(productName,productPrice);
     
     const orderForm = createComponent(OrderForm, {product: this.props.product})

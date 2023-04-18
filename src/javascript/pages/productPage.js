@@ -1,5 +1,7 @@
+import {LinkToCart} from "../components/Button/index.js";
 import { ProductCard } from "../components/ProductCard/index.js";
 import Component from "../core/component.js";
+import {createComponent} from "../core/index.js";
 
 class ProductPage extends Component {
     constructor() {
@@ -44,9 +46,10 @@ class ProductPage extends Component {
             $fragment.appendChild(productItem);
         });
         // 최적화 부분
+        const linkToCart = createComponent(LinkToCart,{})
+        
         productList.appendChild($fragment);
-        this.mainElement.appendChild(productList)
-
+        this.mainElement.append(productList,linkToCart)
         return this.mainElement;
     }
 }

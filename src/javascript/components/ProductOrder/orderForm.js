@@ -42,7 +42,6 @@ class OrderForm extends Component {
   //  //  //
   setOptionQuantity(optionId,newQuantity){
     const newSelectedProductOptions = this.state.selectedProductOptions.map((selectedOption)=>{
-      console.log('찾는거2',selectedOption);
       if(optionId == selectedOption.option) {
         return {...selectedOption, quantity:newQuantity }
       }else {

@@ -14,7 +14,7 @@ class SelectedOption extends Component {
     selectedOptionQuantityInputDiv.setAttribute('class','select-quantity');
     this.props.quantityInput && selectedOptionQuantityInputDiv.append(this.props.quantityInput)
 
-    const selectedOptionPrice = createComponent(ProductPrice ,{price:this.props.optionPrice})
+    const selectedOptionPrice = createComponent(ProductPrice ,{price:this.props.optionPrice, discount: this.props.item.discountRate})
     selectedOptionQuantityInputDiv.append(selectedOptionPrice)
     const closeButton = createComponent(CloseButton)
     closeButton.classList.add('delete-option')

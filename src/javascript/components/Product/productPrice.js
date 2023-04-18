@@ -3,7 +3,9 @@ import Component from "../../core/component.js";
 class ProductPrice extends Component {
 
 
+
   render(){
+
     const productPriceContainer = document.createElement('div');
     productPriceContainer.setAttribute('class', 'product-price');
 
@@ -30,14 +32,15 @@ class ProductPrice extends Component {
         discountRateDisplay.setAttribute('class','discount-rate');
         discountRateDisplay.innerText = this.props.discount + '%';
 
-        discountRateContainer.appendChild(originPrice);
-        discountRateContainer.appendChild(discountRateDisplay);
-        productPriceContainer.appendChild(discountRateContainer);
+        discountRateContainer.append(originPrice);
+        discountRateContainer.append(discountRateDisplay);
+        productPriceContainer.append(discountRateContainer);
 
     }
 
     productPrice.innerText = this.props.price.toLocaleString('ko-Kr');
-    productPrice.appendChild(priceType);
+    productPrice.append(priceType);
+
 
     return productPriceContainer;
   }

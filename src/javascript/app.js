@@ -1,4 +1,4 @@
-import {ProductDetail, ProductPage} from './pages/index.js';
+import {CartPage, ProductDetail, ProductPage} from './pages/index.js';
 import {Router} from './util/index.js';
 
 export default class App {
@@ -11,7 +11,7 @@ export default class App {
     const router = new Router({
         '/': ProductPage,
         '/detail/:id' : ProductDetail,
-       // '/detail/:id' : ProductDetail
+        '/cart' : CartPage
     })
     // 초기화
     router.init(el);
