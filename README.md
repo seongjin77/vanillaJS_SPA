@@ -6,6 +6,8 @@
 
 </div>
 
+배포 URL : https://seongjin77.github.io/vanillaJS_SPA/
+
 해당 레퍼지토리는 리액트에서 지원하는 SPA 기능과 의미를 이해하고자 Vanilla js로 SPA 구현한 결과물입니다.
 라이브러리와 프레임워크 없이 순수 자바스크립트로 단일 페이지 어플리케이션(Single Page Application)을 구현했습니다.
 
