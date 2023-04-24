@@ -151,6 +151,16 @@ class CartPage extends Component{
         })
         orderProductSection.append(orderTable)
         const orderButton = createComponent(OrderButton,{text:'선택 상품 주문하기'})
+        orderButton.addEventListener('click',()=>{
+            const priceText = document.querySelector('.l-price');
+            if(priceText.innerText == '0원'){
+                alert('구매 상품이 없습니다')
+            }
+            else{
+                alert('구매 하였습니다')
+            }
+            this.setState({...this.state})
+        })
         const homeButton = createComponent(LinkToMain,{})
         cartArticle.append(headingTitle,couponSection,orderProductSection,orderButton);
         cartContainer.append(cartArticle,homeButton);
